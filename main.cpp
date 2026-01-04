@@ -32,9 +32,8 @@ int main() {
     while (currentTime < cfg.total_time) {
         
         // A. Module 2: Sinh gói tin (Traffic Generation)
-        // Logic: Mỗi thời điểm, ta thử sinh gói tin. 
-        // Để đơn giản và tránh quá tải, ta quy ước cứ mỗi 10ms (0.01s) thì sinh 1 gói
-        // (Hoặc bạn có thể dùng logic Poisson phức tạp hơn nếu muốn)
+    
+        // Quy ước cứ mỗi 10ms (0.01s) thì sinh 1 gói
         
         // Mẹo: Dùng fmod để kiểm tra chu kỳ sinh
         if ((int)(currentTime * 1000) % 10 == 0) { // Cứ 10ms sinh 1 lần
