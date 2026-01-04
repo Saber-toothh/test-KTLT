@@ -7,7 +7,7 @@ using json = nlohmann::json;
 
 enum PacketType { DATA , VIDEO, VOICE };
 
-// Struct: Định nghĩa cấu trúc dữ liệu
+// Định nghĩa cấu trúc dữ liệu = struct
 struct Packet {
     // A. DỮ LIỆU (DATA)
     int id;                  // Mã định danh
@@ -17,24 +17,24 @@ struct Packet {
     double startProcessTime; // Lúc bắt đầu được xử lý
     double finishTime;       // Lúc xử lý xong
 
-    // B. HÀM TIỆN ÍCH (HELPER METHOD)
-    // Tính toán nhanh độ trễ
-    double getLatency() const { return finishTime - arrivalTime; }
+    // B. HELPER METHOD: Tính toán độ trễ
+    double getLatency() const { return finishTime - arrivalTime; } // const to enforce read-only guarantees --> not modify data
     
     // C. ĐỊNH NGHĨA TOÁN TỬ SO SÁNH 
-    bool operator<(const Packet& other) const {
+    bool operator<(const Packet& other) const { //std::less default
         // 1. Nếu cùng loại:
         if (type == other.type) {
             return arrivalTime > other.arrivalTime; 
         } else {// 2. Nếu khác loại:
-        // Gói có type nhỏ (0) sẽ thua gói có type lớn (1)
+        // Gói có type nhỏ sẽ thua gói có type lớn
         return type < other.type; }
     }
 };
 
-// --- D. MACRO JSON ---
-// Giúp thư viện tự động tạo code để biến Struct thành JSON và ngược lại
+//  D. MACRO JSON 
+// Giúp thư viện tự động tạo code để chuyển đổi giữa Struct và JSON
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Packet, id, type, size, arrivalTime, startProcessTime, finishTime)
 
 
 #endif
+
