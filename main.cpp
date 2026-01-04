@@ -12,7 +12,7 @@ using namespace std;
 int main() {
     cout << "=== MO PHONG QoS ROUTER (Batch Simulation) ===" << endl;
 
-    // --- BƯỚC 1: LOAD CẤU HÌNH (Module 1) ---
+    // --- BƯỚC 1: LOAD CẤU HÌNH ---
     Config cfg = loadConfig("data/config.json");
     cout << "> Cau hinh: " << cfg.simulation_name 
          << " | Bandwidth: " << cfg.bandwidth_mbps << " Mbps" 
@@ -20,7 +20,7 @@ int main() {
 
 
     // --- BƯỚC 2: KHỞI TẠO ---
-    Router coreRouter(cfg);       // Khởi tạo Router (Module 3)
+    Router coreRouter(cfg);       // Khởi tạo Router 
     double currentTime = 0.0;     // Đồng hồ mô phỏng
     double timeStep = 0.001;      // Độ mịn thời gian: 1ms 
     int packetIDCounter = 0;      // Bộ đếm ID gói tin
@@ -31,9 +31,9 @@ int main() {
     
     while (currentTime < cfg.total_time) {
         
-        // A. Module 2: Sinh gói tin (Traffic Generation)
+        // A. Sinh gói tin 
     
-        // Quy ước cứ mỗi 10ms (0.01s) thì sinh 1 gói
+        // Cứ mỗi 10ms (0.01s) thì sinh 1 gói
         
         if ((int)(currentTime * 1000) % 10 == 0) { // Cứ 10ms sinh 1 lần
             packetIDCounter++;
@@ -41,7 +41,7 @@ int main() {
             coreRouter.receivePacket(p);
         }
 
-        // B. Module 3: Router xử lý
+        // B. Router xử lý
         coreRouter.process(currentTime);
 
         // C. Tăng thời gian
@@ -49,11 +49,11 @@ int main() {
     }
 
 
-    // --- BƯỚC 4: BÁO CÁO (Module 4) ---
+    // --- BƯỚC 4: BÁO CÁO ---
     vector<Packet> history = coreRouter.getHistory();
     cout << "> Da xu ly xong " << history.size() << " goi tin." << endl;
 
-    // Gọi hàm xuất báo cáo
+    // Xuất báo cáo
     exportReport(history, "data/report.json");
 
     cout << "=== KET THUC ===" << endl;
