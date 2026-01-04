@@ -1,16 +1,13 @@
-// 1. Include Guards: Chống việc file này bị gọi nhiều lần gây lỗi trùng lặp
 #ifndef PACKET_H
 #define PACKET_H
 
 #include "json.hpp" // Thư viện để chuyển đổi Packet <-> JSON
 
-// 2. Namespace alias: Để viết json cho ngắn thay vì nlohmann::json
 using json = nlohmann::json;
 
-// 3. Enum: Định danh loại gói tin cho dễ đọc
 enum PacketType { DATA , VIDEO, VOICE };
 
-// 4. Struct: Định nghĩa cấu trúc dữ liệu
+// Struct: Định nghĩa cấu trúc dữ liệu
 struct Packet {
     // A. DỮ LIỆU (DATA)
     int id;                  // Mã định danh
@@ -26,7 +23,7 @@ struct Packet {
     
     // C. ĐỊNH NGHĨA TOÁN TỬ SO SÁNH 
     bool operator<(const Packet& other) const {
-        // 1. Nếu cùng loại (cùng VIP hoặc cùng Thường):
+        // 1. Nếu cùng loại:
         if (type == other.type) {
             return arrivalTime > other.arrivalTime; 
         } else {// 2. Nếu khác loại:
@@ -38,5 +35,6 @@ struct Packet {
 // --- D. MACRO JSON ---
 // Giúp thư viện tự động tạo code để biến Struct thành JSON và ngược lại
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Packet, id, type, size, arrivalTime, startProcessTime, finishTime)
+
 
 #endif
