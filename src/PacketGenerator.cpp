@@ -12,15 +12,13 @@ static std::mt19937 rng (std::random_device{}());
 	random_device{}() : bộ khởi tạo giá trị ban đầu cho bộ sinh số.
 	*/
 
-// Hàm sinh số nguyên ngẫu nhiên trong [min, max] xác xuất bằng nhau:
+// Hàm sinh số nguyên ngẫu nhiên trong [min, max] --> Kích cỡ gói tin
 int randomInt (int min, int max) {
     std::uniform_int_distribution<int> dist(min, max);
-    return dist(rng);  // sinh ra 1 số ngẫu nhiên nằm trong [min, max].
-	
-	// std::uniform_int_distribution<int>: bộ phân phối ngẫu nhiên đều.
+    return dist(rng);  // sinh 1 số ngẫu nhiên trong [min, max].
 }
 
-// Hàm sinh gói tin dựa trên cấu hình lưu lượng:
+// Hàm sinh gói tin dựa trên cấu hình lưu lượng (tỉ lệ):
 Packet generatePacket (int id, double currentTime, const Config& cfg) {
     Packet p;
     p.id = id;
@@ -55,4 +53,5 @@ Packet generatePacket (int id, double currentTime, const Config& cfg) {
 
     return p;
 }
+
 
