@@ -1,11 +1,11 @@
 {
   "simulation_name": "Test_QoS_Case_1",
-  "total_time": 100,
-  "bandwidth_mbps": 10,
-  "max_queue_size": 50,
+  "total_time": 3,
+  "bandwidth_mbps": 0.05,
+  "max_queue_size": 20,
   "traffic_rate": { 
-    "data": 0.5, 
-    "video": 0.3,
+    "data": 0.4, 
+    "video": 0.4,
     "voice": 0.2
   }
 }
