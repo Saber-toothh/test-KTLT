@@ -38,13 +38,13 @@ Packet generatePacket (int id, double currentTime, const Config& cfg) {
 
     switch (p.type) {
         case VOICE: 
-            p.size = 64;   // Gói thoại nhỏ (64 bytes)
+            p.size = randomInt(64, 200);   // Gói thoại nhỏ
             break;
         case VIDEO: 
-            p.size = 1500; // Gói video lớn (MTU size)
+            p.size = randomInt(700, 1500); // Gói video lớn
             break;
         case DATA: 
-            p.size = 800;  // Gói web trung bình
+            p.size = randomInt(500, 1000);  // Gói web trung bình
             break;
         default:
             p.size = 500;
@@ -53,5 +53,6 @@ Packet generatePacket (int id, double currentTime, const Config& cfg) {
 
     return p;
 }
+
 
 
