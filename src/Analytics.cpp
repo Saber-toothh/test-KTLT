@@ -12,18 +12,18 @@ using namespace std;
 using json = nlohmann::json;
 
 void exportReport(const vector<Packet>& history, const string& filename) {
-    // Kiểm tra dữ liệu rỗng
+    // Kiểm tra dữ liệu
     if (history.empty()) {
-        cerr << "[Canh bao Module 4] Khong co du lieu de bao cao!" << endl;
+        cerr << "[Canh bao] Khong co du lieu de bao cao!" << endl;
         return;
     }
 
-    cout << "--- MODULE 4: Dang phan tich " << history.size() << " goi tin... ---" << endl;
+    cout << "--- Dang phan tich " << history.size() << " goi tin... ---" << endl;
 
-    // --- A. TÍNH TOÁN BẰNG STL ALGORITHMS ---
+    //  STL ALGORITHMS 
 
-    // 1. Đếm số lượng (count_if)
-    int voiceCount = count_if(history.begin(), history.end(), [](const Packet& p){
+    // 1. Đếm số lượng có điều kiện (count_if)
+    int voiceCount = count_if(history.begin(), history.end(), [](const Packet& p){ //lambda expression --> anonymous function
         return p.type == VOICE;
     });
     int videoCount = count_if(history.begin(), history.end(), [](const Packet& p){
@@ -69,13 +69,13 @@ void exportReport(const vector<Packet>& history, const string& filename) {
     avgVideoLatency = VideoLatency / videoCount;
     avgDataLatency = DataLatency / dataCount;
 
-    // 3. Tìm gói tin tệ nhất (max_element)
+    // 3. Tìm gói tin độ trễ lâu nhất (max_element)
     auto maxIt = max_element(history.begin(), history.end(), 
         [](const Packet& a, const Packet& b) {
             return a.getLatency() < b.getLatency();
         });
 
-    // --- B. TẠO JSON REPORT ---
+    // TẠO JSON REPORT 
     json jReport;
     
     // Phần tổng quan
@@ -98,13 +98,12 @@ void exportReport(const vector<Packet>& history, const string& filename) {
         jReport["worst_packet"] = *maxIt; 
     }
 
-    // Phần danh sách toàn bộ (để vẽ biểu đồ)
+    // Phần danh sách toàn bộ 
     jReport["details"] = history; 
 
-    // --- C. XUẤT RA FILE ---
+    // XUẤT RA FILE 
     ofstream file(filename);
     if (file.is_open()) {
-        // setw(4) để format thụt đầu dòng đẹp (Pretty print)
         file << setw(4) << jReport << endl;
         cout << "[Thanh cong] Da xuat bao cao ra file: " << filename << endl;
     } else {
