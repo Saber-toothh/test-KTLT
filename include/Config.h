@@ -20,8 +20,8 @@ struct TrafficRate {
 struct Config {
     std::string simulation_name;
     double total_time;
-    int bandwidth_mbps;
-    int max_queue_size;
+    double bandwidth_mbps;
+    unsigned int max_queue_size;
     TrafficRate traffic_rate; // Lồng struct con vào đây
 };
 
