@@ -22,7 +22,7 @@ int main() {
     // --- BƯỚC 2: KHỞI TẠO ---
     Router coreRouter(cfg);       // Khởi tạo Router (Module 3)
     double currentTime = 0.0;     // Đồng hồ mô phỏng
-    double timeStep = 0.001;      // Độ mịn thời gian: 1ms (để mô phỏng chính xác hơn)
+    double timeStep = 0.001;      // Độ mịn thời gian: 1ms 
     int packetIDCounter = 0;      // Bộ đếm ID gói tin
     
 
@@ -35,14 +35,13 @@ int main() {
     
         // Quy ước cứ mỗi 10ms (0.01s) thì sinh 1 gói
         
-        // Mẹo: Dùng fmod để kiểm tra chu kỳ sinh
         if ((int)(currentTime * 1000) % 10 == 0) { // Cứ 10ms sinh 1 lần
             packetIDCounter++;
             Packet p = generatePacket(packetIDCounter, currentTime, cfg);
             coreRouter.receivePacket(p);
         }
 
-        // B. Module 3: Router xử lý (Core Logic)
+        // B. Module 3: Router xử lý
         coreRouter.process(currentTime);
 
         // C. Tăng thời gian
@@ -54,7 +53,7 @@ int main() {
     vector<Packet> history = coreRouter.getHistory();
     cout << "> Da xu ly xong " << history.size() << " goi tin." << endl;
 
-    // Gọi hàm xuất báo cáo (Giả sử bạn đã viết trong Analytics.cpp)
+    // Gọi hàm xuất báo cáo
     exportReport(history, "data/report.json");
 
     cout << "=== KET THUC ===" << endl;
