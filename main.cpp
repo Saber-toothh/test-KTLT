@@ -26,7 +26,7 @@ int main() {
     int packetIDCounter = 0;      // Bộ đếm ID gói tin
     
 
-    // --- BƯỚC 3: VÒNG LẶP CHÍNH (Simulation Loop) ---
+    // --- BƯỚC 3: VÒNG LẶP CHÍNH ---
     cout << "> Dang chay mo phong..." << endl;
     
     while (currentTime < cfg.total_time) {
