@@ -33,9 +33,9 @@ int main() {
         
         // A. Sinh gói tin 
     
-        // Cứ mỗi 10ms (0.01s) thì sinh 1 gói
+         // Cứ mỗi 150ms (0.15s) thì sinh 1 gói
         
-        if ((int)(currentTime * 1000) % 10 == 0) { // Cứ 10ms sinh 1 lần
+        if ((int)(currentTime * 1000) % 150 == 0) { // Cứ 150ms sinh 1 lần
             packetIDCounter++;
             Packet p = generatePacket(packetIDCounter, currentTime, cfg);
             coreRouter.receivePacket(p);
