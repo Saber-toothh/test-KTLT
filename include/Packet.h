@@ -19,7 +19,7 @@ struct Packet {
     int priorityScore;
 
     // B. HELPER METHOD: Tính toán độ trễ
-    double getLatency() const { return finishTime - arrivalTime; } // const to enforce read-only guarantees --> not modify data
+    double getLatency() const { return finishTime - arrivalTime; }
     
     // C. ĐỊNH NGHĨA TOÁN TỬ SO SÁNH 
     bool operator<(const Packet& other) const { //std::less default in p_queue
@@ -37,4 +37,5 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Packet, id, type, size, arrivalTime, startPro
 
 
 #endif
+
 
