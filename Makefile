@@ -1,19 +1,18 @@
-# --- CẤU HÌNH ---
+# For Linux only
 
-# Trình biên dịch
+# Compiler
 CXX = g++
 
-# Cờ biên dịch (Compiler Flags)
+# Compiler Flags
 # -std=c++17 : Dùng chuẩn C++17 (tốt cho nlohmann/json)
-# -I./include: Chỉ cho trình biên dịch biết chỗ tìm file header (.h)
-# -Wall -Wextra: Bật chế độ cảnh báo chi tiết (như bạn yêu cầu)
+# -I./include: Cho trình biên dịch biết chỗ tìm file header (.h)
+# -Wall -Wextra: Bật chế độ cảnh báo chi tiết
 CXXFLAGS = -std=c++17 -Wall -Wextra -I./include
 
 # Tên file chạy đầu ra (Executable)
 TARGET = run_sim
 
 # Danh sách các file nguồn (.cpp)
-# Lưu ý: main.cpp nằm ở ngoài, các module nằm trong src/
 SRCS = main.cpp \
        src/LoadConfig.cpp \
        src/PacketGenerator.cpp \
