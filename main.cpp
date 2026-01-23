@@ -1,16 +1,15 @@
 #include <iostream>
 #include <vector>
 
-// Gọi tất cả các Module vào
-#include "Config.h"           // Module 1
-#include "PacketGenerator.h"  // Module 2
-#include "Router.h"           // Module 3
-#include "Analytics.h"        // Module 4 
+#include "Config.h"           
+#include "PacketGenerator.h" 
+#include "Router.h"           
+#include "Analytics.h"         
 
 using namespace std;
 
 int main() {
-    cout << "=== MO PHONG QoS ROUTER (Batch Simulation) ===" << endl;
+    cout << "=== MO PHONG QoS ROUTER ===" << endl;
 
     // --- BƯỚC 1: LOAD CẤU HÌNH ---
     Config cfg = loadConfig("data/config.json");
