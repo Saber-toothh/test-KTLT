@@ -1,0 +1,17 @@
+{
+  "simulation_name": "Test_QoS_Flexible_Priority",
+  "total_time": 5.0,
+  "bandwidth_mbps": 0.018,
+  "max_queue_size": 30,
+  "traffic_rate": { 
+    "data": 0.5, 
+    "video": 0.3,
+    "voice": 0.2
+  },
+
+  "priority_level": {
+    "voice": "HIGH",
+    "video": "MEDIUM",
+    "data": "LOW"
+  }
+}
