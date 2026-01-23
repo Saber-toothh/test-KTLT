@@ -8,7 +8,6 @@
 
 class Router {
 private:
-    // Hàng đợi ưu tiên: Tự động sắp xếp VOICE lên đầu, DATA xuống cuối qua operator<
     std::priority_queue<Packet> waitingQueue;
     
     // Lưu lịch sử các gói đã xử lý xong để Phân tích
